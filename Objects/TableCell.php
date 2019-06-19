@@ -13,7 +13,6 @@
           $this->cellContents = $newCellContents;
       }
     }
-
     //Simple getter and setter methods
     public function get_Contents(){return $this->cellContents;}
     public function update_Contents($newContents){$this->cellContents = $newContents;}
