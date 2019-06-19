@@ -30,10 +30,9 @@
       $this->yDimensionAddressMax = $newMaxYAddress;
 
       $this->tableRows = array();
-      $this->readInTable();
     }
 
-    private function readInTable()
+    public function readInTable()
     {
       if ($this->tableFileLocation != "UNKNOWN")  //If the location var has been set...
       {
