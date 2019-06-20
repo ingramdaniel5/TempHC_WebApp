@@ -86,6 +86,18 @@
         echo "</br></br>";
       }
     }
+    //Function returns an array of html strings for each table
+    public function getAllSpreadSheetTableHTMLStrings()
+    {
+      $toReturn = array();
+      $tableAmount = count($this->tables);
+      for ($x=0; $x<$tableAmount; $x++)
+      {
+        $currentTable = $this->tables[$x];
+        array_push($toReturn, $currentTable->getHTMLElementString());
+      }
+      return $toReturn;
+    }
   }
 
 

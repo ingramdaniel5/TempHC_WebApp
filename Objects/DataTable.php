@@ -1,15 +1,17 @@
 <?php
-
-  /**
-   * This is the class object that stores and handles a table object
-   */
-
   //Sub item is the table cell item
   include "Objects/TableCell.php";
 
+  /**
+   * This is the parent class object that stores and handles the generic table object
+   */
   class DataTable
   {
     private $tableFileLocation = "UNKNOWN";
+
+    //The Default table and row html settings.  Is overwritten in child classes
+    private $tableClassHTML = "<table class=\"table table-bordered table-dark\">";
+    private $tableRowHTML = "<tr>";
 
     //Stored table width and height
     private $xDimensionAddressMin = 0;
@@ -87,16 +89,50 @@
     {
       $tableHeight = $this->getTableHeight();
       $tableWidth = $this->getTableWidth();
+
+      //Prints table Opening Line:
+      echo $this->tableClassHTML;
       for ($y=0; $y<$tableHeight; $y++)
       {
+        echo $this->tableRowHTML; // Echos this at the start of a new tables row
         for($x=0; $x<$tableWidth; $x++)
         {
           $currentCell = $this->tableRows[$y][$x];
           $currentCell->printSelf();
         }
-        echo "</br>";
+        echo "</tr>"; // Prints the standard tag to close the row
       }
+      echo "</table>"; // Prints the standard class to close the table
     }
+
+    public function getHTMLElementString()
+    {
+      $toReturn = ""; // The html string return value
+      $tableHeight = $this->getTableHeight();
+      $tableWidth = $this->getTableWidth();
+
+      //Prints table Opening Line:
+      $toReturn = $toReturn.$this->tableClassHTML;
+      for ($y=0; $y<$tableHeight; $y++)
+      {
+        $toReturn = $toReturn.$this->tableRowHTML; // Echos this at the start of a new tables row
+        for($x=0; $x<$tableWidth; $x++)
+        {
+          $currentCell = $this->tableRows[$y][$x];
+          $toReturn = $toReturn.$currentCell->getHTMLElementString();
+        }
+        $toReturn = $toReturn."</tr>"; // Prints the standard tag to close the row
+      }
+      $toReturn = $toReturn."</table>"; // Prints the standard class to close the table
+      return $toReturn;
+    }
+  }
+
+  // This table format will be used for initial data entry to validate the input for the
+  // fields and field values
+  class DataValidationTable extends DataTable
+  {
+
   }
 
 

@@ -1,7 +1,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>H Choices Data Management Portal</title>
+    <title>H Choices Data Management Web Application</title>
 
     <!-- Template Included Stylesheets-->
     <link rel="apple-touch-icon" href="apple-icon.png">

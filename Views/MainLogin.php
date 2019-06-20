@@ -35,7 +35,7 @@
                     </a>
                 </div>
                 <div class="login-form">
-                    <form action="index.php" method="post">
+                    <form action="index.php?dest=Dashboard" method="post">
                         <div class="form-group">
                             <label>Username</label>
                             <input type="text" class="form-control" placeholder="Username" name="username">
