@@ -1,0 +1,31 @@
+.fullPageTableDiv{
+  width: 80vw;
+  height: 50vh;
+  overflow: scroll;
+  padding: 10px;
+}
+
+.validationTableCard{
+  background: #272c33;
+}
+
+.validationTC_Valid{
+  border-color: #009900;
+  background-color: #ccffcc;
+  border-width: thin;
+  border-style: solid;
+}
+
+.validationTC_Warning{
+  border-color: #e68a00;
+  background-color: #ffe0b3;
+  border-width: thin;
+  border-style: solid;
+}
+
+.validationTC_InValid{
+  border-color: #e60000;
+  background-color: #ffcccc;
+  border-width: thin;
+  border-style: solid;
+}

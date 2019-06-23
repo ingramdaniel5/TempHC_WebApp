@@ -10,8 +10,11 @@
     private $tableFileLocation = "UNKNOWN";
 
     //The Default table and row html settings.  Is overwritten in child classes
-    private $tableClassHTML = "<table class=\"table table-bordered table-dark\">";
-    private $tableRowHTML = "<tr>";
+    protected $tableClassHTML = "<table class=\"table table-bordered table-dark\">";
+    protected $tableRowHTML = "<tr>";
+
+    protected $tableCellClassName = "TableCell";
+    protected $tableCellHeaderClassName = "TableCellHeader";
 
     //Stored table width and height
     private $xDimensionAddressMin = 0;
@@ -57,7 +60,14 @@
               {
                 if ($currentCol >= $this->xDimensionAddressMin && $currentCol <= $this->xDimensionAddressMax) // New Col Adding
                 {
-                  array_push($newRow, new TableCell($row[$currentCol]));
+                  if (Count($this->tableRows) == 0) //If its the first row it prints the header cell
+                  {
+                    array_push($newRow, new $this->tableCellHeaderClassName($row[$currentCol]));
+                  }
+                  else
+                  {
+                    array_push($newRow, new $this->tableCellClassName($row[$currentCol]));  //Else it prints the regular cell item
+                  }
                 }
                 $currentCol++;
               }
@@ -132,7 +142,18 @@
   // fields and field values
   class DataValidationTable extends DataTable
   {
+    function __construct($newMinXAddress, $newMaxXAddress, $newMinYAddress, $newMaxYAddress, $newTableFileLocation)
+    {
+        //Calls the parents constructor and passes the construct vars
+        parent::__construct($newMinXAddress, $newMaxXAddress, $newMinYAddress, $newMaxYAddress, $newTableFileLocation);
 
+        //Updates all of the items that need to change from the parent item:
+        //The Default table and row html settings.  Is overwritten in child classes
+        $this->tableClassHTML = "<table class=\"table table-striped\">";
+        $this->tableRowHTML = "<tr>";
+        $this->tableCellClassName = "VerificationTableCellData";
+        $this->tableCellHeaderClassName = "VerificationTableCellHeader";
+    }
   }
 
 

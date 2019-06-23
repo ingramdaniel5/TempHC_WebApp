@@ -9,6 +9,9 @@
     private $fileLink;
     private $tables = array();
 
+    //Default Cell and table sub item classes:
+    protected $tableClassName = "DataTable";
+
     // Constructor function
     function __construct($newFileLink)
     {
@@ -45,10 +48,10 @@
             $rowLength = $this->getRowTrueLength($row);
             if ($rowLength > $currentEndX || $rowLength == 0)//Start of a new table!
             {
-              if ($currentEndY - $startY != 0) //Handles Turning past rows into a table if table is identified
+              if ($currentEndY - $startY != 1 && $currentEndY != 0) //Handles Turning past rows into a table if table is identified
               {
                 // If the new table has more then 0 rows, its dimensions are sent to the DataTable Class to read later
-                array_push($this->tables, new DataTable($startX, $currentEndX, $startY, $currentEndY, $this->fileLink));
+                array_push($this->tables, new $this->tableClassName($startX, $currentEndX, $startY, $currentEndY, $this->fileLink));
               }
               $startY = $currentEndY; // Sets the starting point of the next table as the endpoint of the first
               $currentEndX = $rowLength; // Sets new table width to found column amount
@@ -56,7 +59,7 @@
             $currentEndY++; //Increments the current end Y row
           }
           //At the end of file needs to submit the final found table dimmensions:
-          array_push($this->tables, new DataTable($startX, $currentEndX, $startY, $currentEndY, $this->fileLink));
+          array_push($this->tables, new $this->tableClassName($startX, $currentEndX, $startY, $currentEndY, $this->fileLink));
           //Closes file
           fclose($handledFile);
         }
@@ -86,6 +89,7 @@
         echo "</br></br>";
       }
     }
+
     //Function returns an array of html strings for each table
     public function getAllSpreadSheetTableHTMLStrings()
     {
@@ -99,6 +103,20 @@
       return $toReturn;
     }
   }
+
+/**
+ * Sub class for an input validation spreadsheet
+ */
+class ValidationInputSpreadsheet extends InputSpreadSheet
+{
+  // Constructor function
+  function __construct($newFileLink)
+  {
+    $this->tableClassName = "DataValidationTable";
+    parent::__construct($newFileLink);
+
+  }
+}
 
 
 ?>

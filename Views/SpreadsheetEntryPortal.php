@@ -82,29 +82,18 @@ include 'Views/StandardViewComponents/SideNavigationBar.php';
               <?php
                //For spreadsheet input testing
                 include 'Objects/InputSpreadSheet.php';
-                $newInputSpreadsheet = new InputSpreadSheet('Assets/ProjectSampleData/SampleInputOne.csv');
+                $newInputSpreadsheet = new ValidationInputSpreadsheet('Assets/ProjectSampleData/SampleInputTwoMultipleTables.csv');
+                //$newInputSpreadsheet = new InputSpreadSheet('Assets/ProjectSampleData/SampleInputOne.csv');
                 $newInputSpreadsheet->findSpreadSheetTables();
                 //$newInputSpreadsheet->printCurrentSpreadSheetData();
                 $foundTablesHTMLStrings = $newInputSpreadsheet->getAllSpreadSheetTableHTMLStrings();
                 //Here is where the found tables are printed for the user
-                /*
                 for ($x=0;$x<Count($foundTablesHTMLStrings); $x++)
                 {
-
-                }*/
+                  $currentTableHTMLString = $foundTablesHTMLStrings[$x];
+                  include 'Views/StandardViewComponents/ValidationTableCard.php';
+                }
               ?>
-                <div class="col-lg-12"><!-- Outer Card Seperation div -->
-                  <div class="card"><!-- Start of card -->
-                    <div class="card-header">
-                        <strong>Spread Sheet Table 1:</strong>
-                    </div>
-                    <div class="card-body card-block">
-                        <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
-                            <?php echo $foundTablesHTMLStrings[0]; ?>
-                        </form>
-                    </div>
-                  </div> <!-- End of card -->
-                </div> <!-- End of Outer Card Seperation div -->
               </div> <!-- End of current Row-->
             </div>
           </div><!-- end of div that fades in main page content -->

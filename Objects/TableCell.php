@@ -8,8 +8,8 @@
     private $cellContents = "EMPTY";
 
     // The default cell html settings
-    private $currentCellHTMLStartTag = "<td>";
-    private $currentCellHTMLEndTag = "</td>";
+    protected $currentCellHTMLStartTag = "<td>";
+    protected $currentCellHTMLEndTag = "</td>";
 
     function __construct($newCellContents)
     {
@@ -37,20 +37,52 @@
     }
   }
 
+  class TableCellHeader extends TableCell
+  {
+    function __construct($newCellContents)
+    {
+      //Calls the parents constructor and passes the construct vars
+      parent::__construct($newCellContents);
+      //Updates all of the items that need to change from the parent item:
+      //The Default table and row html settings.  Is overwritten in child classes
+      $this->currentCellHTMLStartTag = "<th scope=\"col\">";
+      $this->currentCellHTMLEndTag = "</th>";
+    }
+  }
+
   /**
    * This child class extendsd the table cells functionality to validate its contents in the database
    */
   class VerificationTableCellData extends TableCell
   {
+    function __construct($newCellContents)
+    {
+      //Calls the parents constructor and passes the construct vars
+      parent::__construct($newCellContents);
+
+      //Updates all of the items that need to change from the parent item:
+      //The Default table and row html settings.  Is overwritten in child classes
+      $this->currentCellHTMLStartTag = "<td class=\"validationTC_Warning\">";
+    }
+
+    //Here is where the special Verification header cell methods go
 
   }
 
   /**
    * This child class extendsd the table cells functionality to validate its contents in the database
    */
-  class VerificationTableCellHeader extends TableCell
+  class VerificationTableCellHeader extends TableCellHeader
   {
+    function __construct($newCellContents)
+    {
+      //Calls the parents constructor and passes the construct vars
+      parent::__construct($newCellContents);
 
+      $this->currentCellHTMLStartTag = "<th scope=\"col\" class=\"validationTC_InValid\">";
+    }
+
+    //Here is where the special Verification header cell methods go
   }
 
 
