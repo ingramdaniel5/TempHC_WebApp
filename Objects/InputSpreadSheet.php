@@ -3,6 +3,9 @@
    *  This class will handle the intake, reading, and management of the excel/csv spread sheet in php
    */
   include 'Objects/DataTable.php';
+  include 'Assets/CustomProjectAssets.php';
+  include 'Controllers/DataBaseHelper.php';
+
   class InputSpreadSheet
   {
     // Class specific variables
@@ -113,8 +116,7 @@ class ValidationInputSpreadsheet extends InputSpreadSheet
   function __construct($newFileLink)
   {
     $this->tableClassName = "DataValidationTable";
-    parent::__construct($newFileLink);
-
+    parent::__construct($newFileLink); // Calls parent construc function
   }
 }
 

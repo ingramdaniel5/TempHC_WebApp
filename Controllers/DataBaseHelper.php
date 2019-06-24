@@ -45,12 +45,11 @@ class DataBaseHelper
   private static function connectToDatabase()
   {
     //Credentials specific to the server, user, and database
-    /*
     $servername = "127.0.0.1";
     $username = "root";
     $password = "DanIsMast";
     $databaseName = "h_choices_db";
-    */
+
     // Create connection
     $conn = new mysqli($servername, $username, $password, $databaseName);
     // Check connection
@@ -193,11 +192,52 @@ class DataBaseHelper
     $response = DataBaseHelper::handleDatabaseQueryTransaction($qString);
     return $response;
   }
-  //String for hiding an object UPDATE `user` SET `is_hidden` = '1' WHERE `user`.`id` = 1;
 
-  public static function steralizeString($input)
+  //Encryption function
+  public static function secured_encrypt($data)
   {
-    return authenticationStation::encryptData($input);
+    $first_key = base64_decode(FK);
+    $second_key = base64_decode(SK);
+
+    $method1 = "aes-256-cbc";
+    $method2 = 'sha3-512'; // For public version usage
+    $iv_length = openssl_cipher_iv_length($method1);
+    $iv = openssl_random_pseudo_bytes($iv_length);
+
+    $first_encrypted = openssl_encrypt($data,$method1,$first_key, OPENSSL_RAW_DATA ,$iv);
+    $second_encrypted = hash_hmac($method2, $first_encrypted, $second_key, TRUE);
+
+    $output = base64_encode($iv.$second_encrypted.$first_encrypted);
+    return $output;
+  }
+  
+  //100 chars = 256 length string
+  //40 chars = 172 length string
+
+  //Decryption function
+  public static function secured_decrypt($input)
+  {
+    $first_key = base64_decode(FK);
+    $second_key = base64_decode(SK);
+    $mix = base64_decode($input);
+
+    $method1 = "aes-256-cbc";
+    $method2 = 'sha3-512'; // For public version usage
+    $iv_length = openssl_cipher_iv_length($method1);
+
+    $iv = substr($mix,0,$iv_length);
+    $second_encrypted = substr($mix,$iv_length,64);
+    $first_encrypted = substr($mix,$iv_length+64);
+
+    $data = openssl_decrypt($first_encrypted,$method1,$first_key,OPENSSL_RAW_DATA,$iv);
+    $second_encrypted_new = hash_hmac($method2, $first_encrypted, $second_key, TRUE);
+
+    if (hash_equals($second_encrypted,$second_encrypted_new))
+      return $data;
+
+    return false;
   }
 }
+
+
 ?>
