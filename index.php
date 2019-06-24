@@ -54,7 +54,7 @@ if (TRUE)
     }
   }
   else { //If no Navigation request is made goto custom 404 page
-    echo "<center><h1>OH NO! No destination request to go to a page was made! :(</h1></center>";
+    //echo "<center><h1>OH NO! No destination request to go to a page was made! :(</h1></center>";
     include 'Views/MainLogin.php';
   }
 }

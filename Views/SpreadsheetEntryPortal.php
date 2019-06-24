@@ -94,13 +94,6 @@ include 'Views/StandardViewComponents/SideNavigationBar.php';
                   include 'Views/StandardViewComponents/ValidationTableCard.php';
                 }
               ?>
-              <?php
-              // Create The First Key
-              echo base64_encode(openssl_random_pseudo_bytes(32));
-              echo "</br>";
-              // Create The Second Key
-              echo base64_encode(openssl_random_pseudo_bytes(64));
-               ?>
               </div> <!-- End of current Row-->
             </div>
           </div><!-- end of div that fades in main page content -->
