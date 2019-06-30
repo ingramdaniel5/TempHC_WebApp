@@ -28,6 +28,20 @@ include 'Views/StandardViewComponents/StandardPageHeader.php';
 //Includes dashboard and sets active icon to dashboard icon
 $activeMenuSelection = "InsertNewDataSet";
 include 'Views/StandardViewComponents/SideNavigationBar.php';
+
+include 'Assets/CustomProjectAssets.php';
+
+//Gets the class that handles query management to the db
+include 'Controllers/DataBaseHelper.php';
+
+//Gets all the different DB items
+include 'Objects/DatabaseItems.php';
+
+//Gets all of the existing fields and Abbreviations
+include 'Program_API/GetAllFields.php';
+include 'Program_API/GetAllFieldAbbreviations.php';
+
+include 'Objects/InputSpreadSheet.php';
 ?>
 
 <body>
@@ -81,8 +95,7 @@ include 'Views/StandardViewComponents/SideNavigationBar.php';
             <div class="row"><!-- Contains the tables found on the selected graph -->
               <?php
                //For spreadsheet input testing
-                include 'Objects/InputSpreadSheet.php';
-                $newInputSpreadsheet = new ValidationInputSpreadsheet('Assets/ProjectSampleData/SampleInputTwoMultipleTables.csv');
+                $newInputSpreadsheet = new ValidationInputSpreadsheet('Assets/ProjectSampleData/SampleInputTwoMultipleTables.csv', $CurrentTextFields, $CurrentNumericFields, $CurrentStandardFields, $CurrentTextFieldAbbreviations, $CurrentNumericFieldAbbreviations, $CurrentStandardFieldAbbreviations);
                 //$newInputSpreadsheet = new InputSpreadSheet('Assets/ProjectSampleData/SampleInputOne.csv');
                 $newInputSpreadsheet->findSpreadSheetTables();
                 //$newInputSpreadsheet->printCurrentSpreadSheetData();

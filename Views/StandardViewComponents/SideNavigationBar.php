@@ -30,20 +30,22 @@
                         <li><i class="menu-icon fa fa-line-chart"></i><a href="index.php?dest=ExptChart">Chart Data</a></li>
                     </ul>
                 </li>
-                <li class="menu-item-has-children dropdown <?php if($activeMenuSelection == "Reports"){echo "active";} ?>">
+                <!-- Phased Out in revision 2
+                <li class="menu-item-has-children dropdown <?php //if($activeMenuSelection == "Reports"){echo "active";} ?>">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-book"></i>Reports</a>
                     <ul class="sub-menu children dropdown-menu">
                         <li><i class="menu-icon fa fa-folder-open-o"></i><a href="index.php?dest=MngReports">Manage Reports</a></li>
                         <li><i class="menu-icon fa fa-edit"></i><a href="index.php?dest=GenReports">Generate Reports</a></li>
                     </ul>
                 </li>
-                <li class="menu-item-has-children dropdown <?php if($activeMenuSelection == "ChartsGraphs"){echo "active";} ?>">
+                <li class="menu-item-has-children dropdown <?php //if($activeMenuSelection == "ChartsGraphs"){echo "active";} ?>">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-bar-chart"></i>Charts/Graphs</a>
                     <ul class="sub-menu children dropdown-menu">
                         <li><i class="menu-icon fa fa-folder-open-o"></i><a href="index.php?dest=MngChartsAndGraphs">Manage Charts/Graphs</a></li>
                         <li><i class="menu-icon fa fa-area-chart"></i><a href="index.php?dest=GenChartsAndGraphs">Generate Charts/Graphs</a></li>
                     </ul>
                 </li>
+                -->
             </ul>
         </div><!-- /.navbar-collapse -->
     </nav>

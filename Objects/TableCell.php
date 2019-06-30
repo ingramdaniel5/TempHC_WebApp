@@ -78,10 +78,48 @@
     {
       //Calls the parents constructor and passes the construct vars
       parent::__construct($newCellContents);
-
+      //if ($this->isValidField())
+      //  $this->currentCellHTMLStartTag = "<th scope=\"col\" class=\"validationTC_Valid\">";
+      //else
+      //  $this->currentCellHTMLStartTag = "<th scope=\"col\" class=\"validationTC_InValid\">";
       $this->currentCellHTMLStartTag = "<th scope=\"col\" class=\"validationTC_InValid\">";
     }
-
+/*
+    private function isValidField()
+    {
+      foreach($CurrentTextFields as &$fields)
+      {
+        if ($this->cellContents == $fields["field_name"])
+          return TRUE;
+      }
+      foreach($CurrentNumericFields as &$fields)
+      {
+        if ($this->cellContents == $fields["field_name"])
+          return TRUE;
+      }
+      foreach($CurrentStandardFields as &$fields)
+      {
+        if ($this->cellContents == $fields["field_name"])
+          return TRUE;
+      }
+      foreach($CurrentTextFieldAbbreviations as &$fields)
+      {
+        if ($this->cellContents == $fields["field_abbreviation"])
+          return TRUE;
+      }
+      foreach($CurrentNumericFieldAbbreviations as &$fields)
+      {
+        if ($this->cellContents == $fields["field_abbreviation"])
+          return TRUE;
+      }
+      foreach($CurrentStandardFieldAbbreviations as &$fields)
+      {
+        if ($this->cellContents == $fields["field_abbreviation"])
+          return TRUE;
+      }
+      return FALSE;
+    }
+*/
     //Here is where the special Verification header cell methods go
   }
 

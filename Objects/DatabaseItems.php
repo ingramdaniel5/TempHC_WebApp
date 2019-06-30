@@ -8,7 +8,7 @@
 
 class DatabaseItem
 {
-  protected $tableName = "UNKNOWN";
+  protected $tableName = "UNKNOWN"; //Made public in order to format selection values on ui
   protected $tableFields = array();
   protected $payloadFields = array(); //Fields to be set on insert and update
   protected $encryptedFields = array(); //Fields that need to be encrypted in the database
@@ -111,7 +111,9 @@ class TextFieldAbbreviation extends DatabaseItem
   function __construct()
   {
     //Calls the parents constructor and passes the construct vars
-    parent::__construct();
+    parent::__construct("text_field_abbreviation", array("id", "is_confirmed", "date_entered", "text_field_id", "field_abbreviation"));
+    $this->payloadFields = array("text_field_id", "field_abbreviation"); //Only field set in data entry
+    $this->encryptedFields = array("field_abbreviation");
   }
 }
 
@@ -141,7 +143,9 @@ class NumericFieldAbbreviation extends DatabaseItem
   function __construct()
   {
     //Calls the parents constructor and passes the construct vars
-    parent::__construct();
+    parent::__construct("numeric_field_abbreviation", array("id", "is_confirmed", "date_entered", "numeric_field_id", "field_abbreviation"));
+    $this->payloadFields = array("numeric_field_id", "field_abbreviation"); //Only field set in data entry
+    $this->encryptedFields = array("field_abbreviation");
   }
 }
 
@@ -171,7 +175,9 @@ class StandardizedFieldAbbreviation extends DatabaseItem
   function __construct()
   {
     //Calls the parents constructor and passes the construct vars
-    parent::__construct();
+    parent::__construct("standardized_field_abbreviation", array("id", "is_confirmed", "date_entered", "standardized_field_id", "field_abbreviation"));
+    $this->payloadFields = array("standardized_field_id", "field_abbreviation"); //Only field set in data entry
+    $this->encryptedFields = array("field_abbreviation");
   }
 }
 
