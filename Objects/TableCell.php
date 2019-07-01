@@ -55,6 +55,7 @@
    */
   class VerificationTableCellData extends TableCell
   {
+    public $VerificationStatusClass = "validationTC_InValid";
     function __construct($newCellContents)
     {
       //Calls the parents constructor and passes the construct vars
@@ -62,7 +63,7 @@
 
       //Updates all of the items that need to change from the parent item:
       //The Default table and row html settings.  Is overwritten in child classes
-      $this->currentCellHTMLStartTag = "<td class=\"validationTC_Warning\">";
+      $this->currentCellHTMLStartTag = "<td class=\"".$this->VerificationStatusClass."\">";
     }
 
     //Here is where the special Verification header cell methods go
@@ -74,6 +75,7 @@
    */
   class VerificationTableCellHeader extends TableCellHeader
   {
+    public $VerificationStatusClass = "validationTC_InValid";
     function __construct($newCellContents)
     {
       //Calls the parents constructor and passes the construct vars
@@ -82,44 +84,20 @@
       //  $this->currentCellHTMLStartTag = "<th scope=\"col\" class=\"validationTC_Valid\">";
       //else
       //  $this->currentCellHTMLStartTag = "<th scope=\"col\" class=\"validationTC_InValid\">";
-      $this->currentCellHTMLStartTag = "<th scope=\"col\" class=\"validationTC_InValid\">";
+      $this->currentCellHTMLStartTag = "<td class=\"".$this->VerificationStatusClass."\">";
     }
-/*
-    private function isValidField()
+
+    public function validateSelf($twoDArrayToCompare)
     {
-      foreach($CurrentTextFields as &$fields)
+      foreach($twoDArrayToCompare as &$arrayToCompare)
       {
-        if ($this->cellContents == $fields["field_name"])
-          return TRUE;
+        foreach($arrayToCompare as &$field)
+        {
+          if ($this->cellContents == $field["field_name"])
+            $VerificationStatusClass = "validationTC_Valid";
+        }
       }
-      foreach($CurrentNumericFields as &$fields)
-      {
-        if ($this->cellContents == $fields["field_name"])
-          return TRUE;
-      }
-      foreach($CurrentStandardFields as &$fields)
-      {
-        if ($this->cellContents == $fields["field_name"])
-          return TRUE;
-      }
-      foreach($CurrentTextFieldAbbreviations as &$fields)
-      {
-        if ($this->cellContents == $fields["field_abbreviation"])
-          return TRUE;
-      }
-      foreach($CurrentNumericFieldAbbreviations as &$fields)
-      {
-        if ($this->cellContents == $fields["field_abbreviation"])
-          return TRUE;
-      }
-      foreach($CurrentStandardFieldAbbreviations as &$fields)
-      {
-        if ($this->cellContents == $fields["field_abbreviation"])
-          return TRUE;
-      }
-      return FALSE;
     }
-*/
     //Here is where the special Verification header cell methods go
   }
 

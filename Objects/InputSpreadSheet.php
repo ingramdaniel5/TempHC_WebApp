@@ -112,13 +112,46 @@
  */
 class ValidationInputSpreadsheet extends InputSpreadSheet
 {
+  public $DBTextFieldAbbreviations;
+  public $DBNumericAbbreviations;
+  public $DBStandardizedAbbreviations;
+  public $DBTextFields;
+  public $DBNumericFields;
+  public $DBStandardizedFields;
+
+
+
   // Constructor function
   function __construct($newFileLink, $CurrentTextFields, $CurrentNumericFields, $CurrentStandardFields, $CurrentTextFieldAbbreviations, $CurrentNumericFieldAbbreviations, $CurrentStandardFieldAbbreviations)
   {
     $this->tableClassName = "DataValidationTable";
     parent::__construct($newFileLink); // Calls parent construc function
+
+    $this->CurrentTextFieldAbbreviations = new TextFieldAbbreviation();
+    $this->CurrentNumericFieldAbbreviations = new NumericFieldAbbreviation();
+    $this->CurrentStandardFieldAbbreviations = new StandardizedFieldAbbreviation();
+    $this->CurrentTextFields = new TextField();
+    $this->CurrentNumericFields = new NumericField();
+    $this->CurrentStandardFields = new StandardizedField();
+
+    //Loads all field types from the database to use as comparatores
+    $this->CurrentTextFieldAbbreviations = $DBTextFieldAbbreviations->getAllItems();
+    $this->CurrentNumericFieldAbbreviations = $DBNumericAbbreviations->getAllItems();
+    $this->CurrentStandardFieldAbbreviations = $DBStandardizedAbbreviations->getAllItems();
+    $this->CurrentTextFields = $DBTextFields->getAllItems();
+    $this->CurrentNumericFields = $DBNumericFields->getAllItems();
+    $this->CurrentStandardFields = $DBStandardizedFields->getAllItems();
+
+    validateChildTables(array($this->CurrentTextFieldAbbreviations, $this->CurrentNumericFieldAbbreviations, $this->CurrentStandardFieldAbbreviations, $this->CurrentTextFields, $this->CurrentNumericFields, $this->CurrentStandardFields));
+  }
+
+  public function validateChildTables($twoDArrayToCompare)
+  {
+    foreach ($this->tables as $table)
+    {
+      $table->validateCells($twoDArrayToCompare[$x]);
+    }
   }
 }
-
 
 ?>

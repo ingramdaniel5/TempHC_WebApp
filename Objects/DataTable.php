@@ -154,6 +154,15 @@
         $this->tableCellClassName = "VerificationTableCellData";
         $this->tableCellHeaderClassName = "VerificationTableCellHeader";
     }
+
+    public function validateCells($twoDArrayToCompare)
+    {
+      foreach ($this->tableRows as &$row) {
+        foreach ($row as $cell) {
+          $cell->validateSelf();
+        }
+      }
+    }
   }
 
 
