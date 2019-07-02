@@ -97,7 +97,7 @@ include 'Objects/InputSpreadSheet.php';
                //For spreadsheet input testing
                 $newInputSpreadsheet = new ValidationInputSpreadsheet('Assets/ProjectSampleData/SampleInputTwoMultipleTables.csv', $CurrentTextFields, $CurrentNumericFields, $CurrentStandardFields, $CurrentTextFieldAbbreviations, $CurrentNumericFieldAbbreviations, $CurrentStandardFieldAbbreviations);
                 //$newInputSpreadsheet = new InputSpreadSheet('Assets/ProjectSampleData/SampleInputOne.csv');
-                $newInputSpreadsheet->findSpreadSheetTables();
+                //$newInputSpreadsheet->findSpreadSheetTables();
                 //$newInputSpreadsheet->printCurrentSpreadSheetData();
                 $foundTablesHTMLStrings = $newInputSpreadsheet->getAllSpreadSheetTableHTMLStrings();
                 //Here is where the found tables are printed for the user
