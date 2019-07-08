@@ -23,7 +23,7 @@
     private $yDimensionAddressMax = 0;
 
     //2d Array to store all of the sheets text values
-    private $tableRows = array();
+    protected $tableRows = array();
 
     function __construct($newMinXAddress, $newMaxXAddress, $newMinYAddress, $newMaxYAddress, $newTableFileLocation)
     {
@@ -158,8 +158,8 @@
     public function validateCells($twoDArrayToCompare)
     {
       foreach ($this->tableRows as &$row) {
-        foreach ($row as $cell) {
-          $cell->validateSelf();
+        foreach ($row as &$cell) {
+          $cell->validateSelf($twoDArrayToCompare);
         }
       }
     }

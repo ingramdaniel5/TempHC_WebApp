@@ -9,8 +9,8 @@
   class InputSpreadSheet
   {
     // Class specific variables
-    private $fileLink;
-    private $tables = array();
+    protected $fileLink;
+    protected $tables = array();
 
     //Default Cell and table sub item classes:
     protected $tableClassName = "DataTable";
@@ -149,7 +149,7 @@ class ValidationInputSpreadsheet extends InputSpreadSheet
   {
     foreach ($this->tables as $table)
     {
-      $table->validateCells($twoDArrayToCompare[$x]);
+      $table->validateCells($twoDArrayToCompare);
     }
   }
 }

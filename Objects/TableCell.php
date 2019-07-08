@@ -5,7 +5,7 @@
   class TableCell
   {
     public $IsColumnHeader = FALSE;
-    private $cellContents = "EMPTY";
+    protected $cellContents = "EMPTY";
 
     // The default cell html settings
     protected $currentCellHTMLStartTag = "<td>";
@@ -15,7 +15,7 @@
     {
       if (trim($newCellContents) != "")
       {
-          $this->cellContents = $newCellContents;
+          $this->cellContents = trim($newCellContents, " ");
       }
     }
 
@@ -67,6 +67,31 @@
     }
 
     //Here is where the special Verification header cell methods go
+    public function validateSelf($twoDArrayToCompare)
+    {
+      //Needs new method for validating non header cells
+      /*
+      foreach($twoDArrayToCompare as &$arrayToCompare)
+      {
+        if ($arrayToCompare[0] != "Warning!!! 0 results found")
+        {
+          foreach($arrayToCompare as &$field)
+          {
+            if (array_key_exists("field_abbreviation", $field))
+            {
+              if ($this->cellContents == $field["field_abbreviation"])
+              $VerificationStatusClass = "validationTC_Valid";
+            }
+            else if (array_key_exists("field_name", $field))
+            {
+              if ($this->cellContents == $field["field_name"])
+              $VerificationStatusClass = "validationTC_Valid";
+            }
+          }
+        }
+      }
+      */
+    }
 
   }
 
@@ -91,10 +116,21 @@
     {
       foreach($twoDArrayToCompare as &$arrayToCompare)
       {
-        foreach($arrayToCompare as &$field)
+        if ($arrayToCompare[0] != "Warning!!! 0 results found")
         {
-          if ($this->cellContents == $field["field_name"])
-            $VerificationStatusClass = "validationTC_Valid";
+          foreach($arrayToCompare as &$field)
+          {
+            if (array_key_exists("field_abbreviation", $field))
+            {
+              if ($this->cellContents == $field["field_abbreviation"])
+              $VerificationStatusClass = "validationTC_Valid";
+            }
+            else if (array_key_exists("field_name", $field))
+            {
+              if ($this->cellContents == $field["field_name"])
+              $VerificationStatusClass = "validationTC_Valid";
+            }
+          }
         }
       }
     }
