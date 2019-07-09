@@ -58,6 +58,7 @@ class DatabaseItem
       $qString = $qString.");"; //Closes the values to be added
       //Returns the array given by DB Helper
       //var_dump($qString); //For testing purposes only
+
     }
     return DataBaseHelper::handleDatabaseQueryTransaction($qString);
   }
