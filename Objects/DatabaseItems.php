@@ -92,7 +92,7 @@ class DatabaseItem
 
   public function deleteItem()
   {
-
+    
   }
 }
 

@@ -85,7 +85,7 @@ include 'Program_API/HandlePostFormRequests.php';
                             <div class="col-12 col-md-9">
                                     <?php
                                     //This inclusion expects there to be 3 arrays of all the field types in existance
-                                    include 'Views/StandardViewComponents/DropdownBoxWithAllFields.php';
+                                    include 'Views/StandardViewComponents/DropDownListGetters/DropdownBoxWithAllFields.php';
                                     ?>
                             </div>
                         </div>
@@ -103,6 +103,82 @@ include 'Program_API/HandlePostFormRequests.php';
                 </form>
               </div> <!-- End of Outer Card Seperation div -->
 
+              <div class="col-lg-6"><!-- Outer Card Seperation div -->
+                <div class="card"><!-- Start of card -->
+                  <div class="card-header"> <!-- card header -->
+                      <strong>Add New Standardized Field Option:</strong>
+                  </div>
+                  <form action="index.php?dest=ManualDataInput&GenerateNewAbbreviation=1"  method="post"> <!-- start of the card's content's form object -->
+                    <div class="card-body card-block"> <!-- card body -->
+                        <div class="row form-group">
+                            <div class="col col-md-3"><label for="text-input" class="form-control-label">New Field Option Name</label></div>
+                            <div class="col-12 col-md-9"><input type="form-control-lg" id="text-input" name="FieldAbbreviationName" autocomplete="off" placeholder="" class="form-control"><small class="form-text text-muted">Please capatilize the first letter of each word and use full and proper spelling</small></div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col col-md-3"><label for="selectLg" class=" form-control-label">Standardized Field</label></div>
+                            <div class="col-12 col-md-9">
+                                    <?php
+                                    //This inclusion expects there to be 3 arrays of all the field types in existance
+                                    include 'Views/StandardViewComponents/DropDownListGetters/DropdownBoxWithAllStandarizedFieldOptions.php';
+                                    ?>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="card-footer"> <!-- card footer -->
+                      <button type="submit" class="btn btn-primary">
+                          <i class="fa fa-dot-circle-o"></i> Submit
+                      </button>
+                      <button type="reset" class="btn btn-danger">
+                          <i class="fa fa-ban"></i> Reset
+                      </button>
+                    </div>
+                  </div> <!-- End of card -->
+                </form>
+              </div> <!-- End of Outer Card Seperation div -->
+
+              <div class="col-lg-6"><!-- Outer Card Seperation div -->
+                <div class="card"><!-- Start of card -->
+                  <div class="card-header"> <!-- card header -->
+                      <strong>Add New Standardized Field Option Abbreviation:</strong>
+                  </div>
+                  <form action="index.php?dest=ManualDataInput&GenerateNewAbbreviation=1"  method="post"> <!-- start of the card's content's form object -->
+                    <div class="card-body card-block"> <!-- card body -->
+                        <div class="row form-group">
+                            <div class="col col-md-3"><label for="text-input" class="form-control-label">Abbreviation Name</label></div>
+                            <div class="col-12 col-md-9"><input type="form-control-lg" id="text-input" name="FieldAbbreviationName" autocomplete="off" placeholder="" class="form-control"><small class="form-text text-muted">Please capatilize the first letter of each word and use full and proper spelling</small></div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col col-md-3"><label for="selectLg" class=" form-control-label">Standardized Field</label></div>
+                            <div class="col-12 col-md-9">
+                                    <?php
+                                    //This inclusion expects there to be 3 arrays of all the field types in existance
+                                    include 'Views/StandardViewComponents/DropDownListGetters/DropdownBoxWithAllStandarizedFieldOptions.php';
+                                    ?>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col col-md-3"><label for="selectLg" class=" form-control-label">Standardized Field Option</label></div>
+                            <div class="col-12 col-md-9">
+                                    <?php
+                                    //This inclusion expects there to be 3 arrays of all the field types in existance
+                                    include 'Views/StandardViewComponents/DropDownListGetters/DropdownBoxWithAllStandarizedFieldOptions.php';
+                                    ?>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="card-footer"> <!-- card footer -->
+                      <button type="submit" class="btn btn-primary">
+                          <i class="fa fa-dot-circle-o"></i> Submit
+                      </button>
+                      <button type="reset" class="btn btn-danger">
+                          <i class="fa fa-ban"></i> Reset
+                      </button>
+                    </div>
+                  </div> <!-- End of card -->
+                </form>
+              </div> <!-- End of Outer Card Seperation div -->
 
             </div> <!-- End of current Row-->
           </div>
